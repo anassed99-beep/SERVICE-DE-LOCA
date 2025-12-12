@@ -53,7 +53,7 @@ function animateSkillBars() {
 }
 
 // Observer pour l'animation des compétences
-const aboutSection = document.querySelector('#About');
+const aboutSection = document.querySelector('#a-propos');
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -63,111 +63,27 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, { threshold: 0.5 });
 
-if (aboutSection) {
-    observer.observe(aboutSection);
-}
+observer.observe(aboutSection);
 
 // Formulaire de contact
 const contactForm = document.getElementById('contactForm');
 
-if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        alert('Merci pour votre message ! Je vous répondrai dans les plus brefs délais.');
-        contactForm.reset();
-    });
-}
-
-// Toggle Mode Sombre/Clair
-const themeToggle = document.getElementById('themeToggle');
-const themeIconMoon = themeToggle.querySelector('.fa-moon');
-const themeIconSun = themeToggle.querySelector('.fa-sun');
-
-// Vérifier le thème sauvegardé ou préféré
-const savedTheme = localStorage.getItem('theme') || 'dark';
-if (savedTheme === 'light') {
-    document.body.classList.add('light-mode');
-    themeIconMoon.style.display = 'none';
-    themeIconSun.style.display = 'block';
-}
-
-themeToggle.addEventListener('click', () => {
-    document.body.classList.toggle('light-mode');
-    
-    if (document.body.classList.contains('light-mode')) {
-        themeIconMoon.style.display = 'none';
-        themeIconSun.style.display = 'block';
-        localStorage.setItem('theme', 'light');
-    } else {
-        themeIconMoon.style.display = 'block';
-        themeIconSun.style.display = 'none';
-        localStorage.setItem('theme', 'dark');
-    }
+contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    alert('Merci pour votre message ! Je vous répondrai dans les plus brefs délais.');
+    contactForm.reset();
 });
 
-// Bouton Télécharger CV
-const downloadCV = document.getElementById('downloadCV');
-
-downloadCV.addEventListener('click', (e) => {
-    e.preventDefault();
-    // Créer un CV fictif en PDF (dans un cas réel, vous auriez un vrai fichier PDF)
-    const cvContent = `
-        Curriculum Vitae - Anas Seddaoui
-        
-        Full Stack Web Developer
-        ========================
-        
-        Informations Personnelles:
-        --------------------------
-        Nom: Anas Seddaoui
-        Email: seeanas836@gmail.com
-        Téléphone: +212 6-32-33-77-21
-        Adresse: Daoudiate-Marrakech-Maroc
-        
-        Compétences:
-        -------------
-        • HTML/CSS: Avancé
-        • JavaScript: Intermédiaire
-        • PHP: Intermédiaire
-        • React: Débutant
-        • UI/UX Design: Débutant
-        
-        Expérience:
-        -----------
-        Développeur Web Junior - 2023 à présent
-        • Développement de sites web responsifs
-        • Création d'applications web modernes
-        
-        Projets:
-        --------
-        1. Site de location de voitures
-           - Développement complet du site
-           - Interface utilisateur moderne
-        
-        Éducation:
-        ----------
-        Formation en développement web
-        Auto-formation et projets personnels
-        
-        Langues:
-        --------
-        • Arabe: Langue maternelle
-        • Français: Courant
-        • Anglais: Intermédiaire
-    `;
-    
-    // Créer un blob et télécharger
-    const blob = new Blob([cvContent], { type: 'text/plain' });
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'CV_Anas_Seddaoui.txt';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    window.URL.revokeObjectURL(url);
-    
-    alert('CV téléchargé ! Dans un site réel, ceci téléchargerait un vrai fichier PDF.');
+// Changement de couleur de la navbar au scroll
+window.addEventListener('scroll', () => {
+    const header = document.querySelector('header');
+    if (window.scrollY > 100) {
+        header.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+        header.style.backdropFilter = 'blur(10px)';
+    } else {
+        header.style.backgroundColor = 'white';
+        header.style.backdropFilter = 'none';
+    }
 });
 
 // Animation au défilement pour les éléments
@@ -193,13 +109,3 @@ const animateOnScroll = () => {
 
 // Initialiser l'animation au défilement
 animateOnScroll();
-
-// Changement de couleur de la navbar au scroll
-window.addEventListener('scroll', () => {
-    const header = document.querySelector('header');
-    if (window.scrollY > 100) {
-        header.style.backdropFilter = 'blur(10px)';
-    } else {
-        header.style.backdropFilter = 'blur(15px)';
-    }
-});
