@@ -9,37 +9,48 @@
 </head>
 <body>
     <!-- Header -->
-    <header>
-        <div class="container">
-            <nav class="navbar">
-                <a href="#" class="logo">Port<span>folio</span></a>
-                <ul class="nav-links">
-                    <li><a href="#Home">Home</a></li>
-                    <li><a href="#About">About</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#Projects">Projects</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
+<header>
+    <div class="container">
+        <nav class="navbar">
+            <a href="#" class="logo">Port<span>folio</span></a>
+            <ul class="nav-links">
+                <li><a href="#Home">Home</a></li>
+                <li><a href="#About">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#Projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="nav-buttons">
+                <!-- Bouton mode sombre/clair -->
+                <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème">
+                    <i class="fas fa-moon"></i>
+                    <i class="fas fa-sun" style="display: none;"></i>
+                </button>
                 <div class="hamburger">
                     <i class="fas fa-bars"></i>
                 </div>
-            </nav>
-        </div>
-    </header>
+            </div>
+        </nav>
+    </div>
+</header>
 
     <!-- Hero Section -->
-    <section class="hero" id="Home">
-        <div class="container">
-            <div class="hero-content">
-                <h1>Anas Seddaoui</h1>
-                <p>Full Stack Web Developer</p>
-                <div class="hero-btns">
-                    <a href="#Projects" class="btn">View my projects</a>
-                    <a href="#contact" class="btn">Contact me</a>
-                </div>
+<section class="hero" id="Home">
+    <div class="container">
+        <div class="hero-content">
+            <h1>Anas Seddaoui</h1>
+            <p>Full Stack Web Developer</p>
+            <div class="hero-btns">
+                <a href="#Projects" class="btn">View my projects</a>
+                <a href="#contact" class="btn">Contact me</a>
+                <!-- Nouveau bouton Mon CV -->
+                <a href="#" class="btn btn-cv" id="cvBtn">
+                    <i class="fas fa-download"></i> Mon CV
+                </a>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- About Section -->
     <section class="section" id="About">
