@@ -106,6 +106,80 @@ const animateOnScroll = () => {
         observer.observe(el);
     });
 };
+// Ajouter ces fonctions au fichier script.js existant
+
+// Gestion du thème sombre/clair
+const themeToggle = document.getElementById('themeToggle');
+const moonIcon = themeToggle.querySelector('.fa-moon');
+const sunIcon = themeToggle.querySelector('.fa-sun');
+
+// Vérifier le thème sauvegardé ou la préférence système
+const savedTheme = localStorage.getItem('theme') || 'dark';
+if (savedTheme === 'light') {
+    document.body.classList.add('light-mode');
+    moonIcon.style.display = 'none';
+    sunIcon.style.display = 'block';
+}
+
+themeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('light-mode');
+    
+    if (document.body.classList.contains('light-mode')) {
+        moonIcon.style.display = 'none';
+        sunIcon.style.display = 'block';
+        localStorage.setItem('theme', 'light');
+        themeToggle.setAttribute('aria-label', 'Activer le mode sombre');
+    } else {
+        moonIcon.style.display = 'block';
+        sunIcon.style.display = 'none';
+        localStorage.setItem('theme', 'dark');
+        themeToggle.setAttribute('aria-label', 'Activer le mode clair');
+    }
+});
+
+// Gestion du bouton CV
+const cvBtn = document.getElementById('cvBtn');
+
+cvBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    
+    // Vous pouvez remplacer cette URL par le lien vers votre vrai CV
+    const cvUrl = 'https://example.com/your-cv.pdf';
+    
+    // Créer un lien temporaire pour télécharger le CV
+    const link = document.createElement('a');
+    link.href = cvUrl;
+    link.target = '_blank';
+    link.download = 'CV_Anas_Seddaoui.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    
+    // Message de confirmation (vous pouvez le retirer)
+    alert('Le téléchargement de votre CV va commencer...');
+});
+
+// Modifier la fonction existante de changement de couleur de la navbar
+window.addEventListener('scroll', () => {
+    const header = document.querySelector('header');
+    const isLightMode = document.body.classList.contains('light-mode');
+    
+    if (window.scrollY > 100) {
+        if (isLightMode) {
+            header.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+        } else {
+            header.style.backgroundColor = 'rgba(15, 23, 42, 0.95)';
+        }
+        header.style.backdropFilter = 'blur(10px)';
+    } else {
+        if (isLightMode) {
+            header.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+        } else {
+            header.style.backgroundColor = 'rgba(15, 23, 42, 0.95)';
+        }
+        header.style.backdropFilter = 'blur(15px)';
+    }
+});
 
 // Initialiser l'animation au défilement
 animateOnScroll();
