@@ -183,3 +183,73 @@ window.addEventListener('scroll', () => {
 
 // Initialiser l'animation au défilement
 animateOnScroll();
+// Ajouter ce code à la fin de votre fichier script.js existant
+
+// Mode sombre/clair - Version simplifiée
+const themeToggle = document.getElementById('themeToggle');
+const body = document.body;
+
+// Vérifier le thème sauvegardé
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme === 'light') {
+    body.classList.add('light-mode');
+    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+}
+
+// Basculer le thème
+themeToggle.addEventListener('click', () => {
+    body.classList.toggle('light-mode');
+    
+    if (body.classList.contains('light-mode')) {
+        themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        localStorage.setItem('theme', 'light');
+        themeToggle.setAttribute('aria-label', 'Activer le mode sombre');
+    } else {
+        themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+        localStorage.setItem('theme', 'dark');
+        themeToggle.setAttribute('aria-label', 'Activer le mode clair');
+    }
+});
+
+// Bouton CV
+const cvBtn = document.getElementById('cvBtn');
+
+cvBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    
+    // Message d'information
+    alert('Pour télécharger mon CV, veuillez me contacter directement par email à seeanas836@gmail.com');
+    
+    // Alternative: Rediriger vers LinkedIn ou autre portfolio
+    // window.open('https://www.linkedin.com/in/anas-seddaoui-9921b9398', '_blank');
+});
+
+// Corriger la fonction de scroll pour le header
+window.addEventListener('scroll', () => {
+    const header = document.querySelector('header');
+    const isLightMode = body.classList.contains('light-mode');
+    
+    if (window.scrollY > 100) {
+        if (isLightMode) {
+            header.style.backgroundColor = 'rgba(248, 250, 252, 0.98)';
+        } else {
+            header.style.backgroundColor = 'rgba(15, 23, 42, 0.98)';
+        }
+        header.style.backdropFilter = 'blur(10px)';
+    } else {
+        if (isLightMode) {
+            header.style.backgroundColor = 'rgba(248, 250, 252, 0.95)';
+        } else {
+            header.style.backgroundColor = 'rgba(15, 23, 42, 0.95)';
+        }
+        header.style.backdropFilter = 'blur(15px)';
+    }
+});
+
+// S'assurer que le menu mobile fonctionne
+hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+    const icon = hamburger.querySelector('i');
+    icon.classList.toggle('fa-bars');
+    icon.classList.toggle('fa-times');
+});
