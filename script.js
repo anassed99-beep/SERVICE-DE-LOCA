@@ -110,10 +110,10 @@ if (cvBtn) {
         const link = document.createElement('a');
         
         // METTRE ICI LE CHEMIN VERS VOTRE FICHIER PDF
-        link.href = 'CV.PDF'; // ← Remplacez par votre fichier
+        link.href = 'CV.pdf'; // ← Remplacez par votre fichier
         
         // Nom du fichier à télécharger
-        link.download = 'CV.PDF';
+        link.download = 'CV.pdf';
         
         // Lancer le téléchargement
         document.body.appendChild(link);
