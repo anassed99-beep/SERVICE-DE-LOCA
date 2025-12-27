@@ -99,15 +99,28 @@ document.addEventListener('DOMContentLoaded', function() {
             Array.from(document.querySelectorAll('[id]')).map(el => el.id));
     }
     
-    // ===== BOUTON CV =====
-    const cvBtn = document.getElementById('cvBtn');
-    if (cvBtn) {
-        cvBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            console.log('Bouton CV cliqué');
-            alert('Pour télécharger mon CV, veuillez me contacter directement par email à seeanas836@gmail.com');
-        });
-    }
+   // ===== BOUTON CV =====
+const cvBtn = document.getElementById('cvBtn');
+if (cvBtn) {
+    cvBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        console.log('Bouton CV cliqué - Téléchargement en cours');
+        
+        // Créer un lien temporaire
+        const link = document.createElement('a');
+        
+        // METTRE ICI LE CHEMIN VERS VOTRE FICHIER PDF
+        link.href = 'CV.PDF'; // ← Remplacez par votre fichier
+        
+        // Nom du fichier à télécharger
+        link.download = 'CV.PDF';
+        
+        // Lancer le téléchargement
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    });
+}
     
     // ===== FILTRAGE PORTFOLIO =====
     const filterBtns = document.querySelectorAll('.filter-btn');
